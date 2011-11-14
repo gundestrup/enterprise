@@ -1,0 +1,50 @@
+<h1><%= @program.name %></h1>
+<%= link_to 'Edit', edit_program_path(@program) %> |
+<%= link_to 'Back', programs_path %> |
+<%= link_to 'New', new_program_path %>
+<table class="Table">
+    <tr>
+        <td width="80">
+            Description:
+        </td>
+        <td>
+            <%=h @program.description %>
+        </td>
+    </tr>
+    <tr>
+        <td width="80">
+            Version:
+        </td>
+        <td>
+            <%=h @program.version %>
+        </td>
+    </tr>
+    <tr>
+        <td width="80">
+            Licenses:
+        </td>
+        <td>
+            <%=h @program.licenses %>
+        </td>
+    </tr>
+    <tr>
+        <td width="80">
+            Serial:
+        </td>
+        <td>
+            <%=h @program.serialnumber %>
+        </td>
+    </tr>
+    <tr>
+        <td width="80">
+            OS
+        </td>
+        <td>
+            <%if @program.linux %>Linux<% end %>
+
+            <%if @program.mac %>Mac<% end %>
+        
+            <%if @program.pc %>pc<% end %>
+        </td>
+    </tr>
+</table>

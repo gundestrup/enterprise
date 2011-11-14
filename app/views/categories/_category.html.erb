@@ -1,0 +1,26 @@
+<%= error_messages_for :category %>
+
+<% form_for(@category) do |f| %>
+    <table class="Table">
+        <tr>
+            <td>Name</td><td> <%= f.text_field :name %></td>
+        </tr>
+        <tr>
+            <td>Film </td><td><%= f.check_box :film %></td>
+        </tr>
+        <tr>
+            <td>Food </td><td><%= f.check_box :food %></td>
+        </tr>
+	</table>
+    <% if controller.action_name == "edit" -%>
+        <%= f.submit "Update" %>
+        <%= link_to ' Back', @category -%> |
+        <%= link_to ' List', categories_path -%>
+    <% end -%>
+    <% if controller.action_name == "new" %>
+        <%= f.submit "Create" -%>
+        <%= link_to ' Back', categories_path -%> | 
+		<a href="" onClick="closebar(); return false">Close</a>
+    <% end -%>
+
+<% end -%>

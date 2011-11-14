@@ -1,0 +1,50 @@
+<%= tabnav :media %>
+<h2>Listing movies</h2>
+<% form_tag movies_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+    <%= @total %> (<%= Movie.count(:all) %>)
+  </p>
+<% end %>
+<% if @movies.empty? %>
+    Sorry no movies found
+<% end %>
+<table class="Table">
+    
+        <tr valign="top">
+            <th>Title</th><th>Year</th><th>Rating</th><th>Status</th><%if logged_in?%><th>Actions</th><% end %>
+        </tr>
+        <%
+        odd_or_even = 0
+        for movie in @movies
+        odd_or_even = 1 - odd_or_even
+        %>
+
+            <tr valign="top" class="ListLine<%= odd_or_even %>">
+                <td><%= link_to movie.title, movie %></td><td><%= movie.year.to_s %></td><td><%= movie.rating.to_s %></td>
+                <td><% if movie.link.to_s.length > 3 %><a href="http://<%= movie.link %>">url</a><% end %> </td>
+                <%if logged_in?%><td><%= link_to 'Destroy', movie, :confirm => 'Are you sure?', :method => :delete %></td><% end %>
+            </tr>
+
+        <tr valign="top" class="ListLine<%= odd_or_even %>">
+            <td colspan="3">Actor: <%= movie.actor %></td>
+            <td><% if movie.own %>
+                    Own
+                    <% end %><br/>
+                    <% if movie.rented %>
+                        Rented
+                    <% end %>
+            </td>
+            
+            <%if logged_in?%><td><%= link_to 'Edit', edit_movie_path(movie) %></td><% end %>
+        </tr>
+        <tr class="ListLine<%= odd_or_even%>">
+            <td colspan="2">Category:<%= link_to movie.category.name, movie.category %> (<%= Movie.catcount(movie.category_id) %>)</td><td colspan="3"> <%= link_to movie.location.name, movie.location %> (<%= Movie.loccount(movie.location_id) %>)</td>
+        </tr>
+        <tr>
+            <td colspan="4"><hr class="Ruler" /></td>
+        </tr>
+        <% end %>
+    </table>
+<%= will_paginate @movies %>

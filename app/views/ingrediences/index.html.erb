@@ -1,0 +1,63 @@
+<%= tabnav :kitchen %>
+<h1>Listing ingrediences</h1>
+<% form_tag ingrediences_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+    <% if logged_in? %> <% link_to 'New', new_ingredience_path %><% end %>
+  </p>
+<% end %>
+<% if @ingrediences.empty? %>
+    Sorry no ingrediences found
+<% end %>
+<%= show_box_for @ingrediences, :link_name=> 'New ingredience' %>
+                    <% detail_box_for @ingrediences do %>
+                    <%= hide_box_for @ingrediences, :link_name=> 'done' %>
+
+            <% form_remote_tag(:url => {:controller => 'ingrediences', :action => 'create'},
+                              :update => 'my ingredience', :position => 'bottom',
+                              :html => {:id => 'ingredience_form'}
+                              ) do  %>
+            <table>
+                <tr>
+                    <th>Title</th>
+                </tr>
+                    <tr>
+                        <td><%= text_field :ingredience, :title %></td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td><%= text_area :ingredience, :description, :rows=> "5", :cols=> "22" %></td>
+                    </tr>
+                    <tr>
+                        <th>Weight</th>
+                    </tr>
+                    <tr>
+                        <td><%= text_field :ingredience, :weight %></td>
+                    </tr>    
+            </table>
+            <%= submit_tag 'Add' %>
+        <% end %>
+    <% end %>
+<table class="Table" id="my ingredience">
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+  </tr>
+
+    <%
+       odd_or_even = 0
+       for ingredience in @ingrediences
+       odd_or_even = 1 - odd_or_even
+    %>
+  <tr class="ListLine<%= odd_or_even %>" >
+    <td><%= link_to ingredience.title, ingredience %>(<%= Meal.ingrediensecount(ingredience.id)%>)</td>
+    <td><%=h ingredience.description %></td>    
+    <td><%= link_to 'Edit', edit_ingredience_path(ingredience) %></td>
+    <td><%= link_to 'Destroy', ingredience, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @ingrediences %>

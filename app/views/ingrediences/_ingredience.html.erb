@@ -1,0 +1,20 @@
+<%= error_messages_for :ingredience %>
+
+<% form_for(@ingredience) do |f| %>
+    <table class="Table">
+        <tr>
+            <td>Title</td><td> <%= f.text_field :title %></td>
+        </tr>
+        <tr>
+            <td>Description </td><td><%= f.text_area :description, :rows=> "5", :cols=> "22" %></td>
+        </tr>
+    </table>
+
+    <% if controller.action_name == "edit" -%>
+        <%= f.submit "Update" -%>
+    <% end %>
+    <% if controller.action_name == "new" -%>
+        <%= f.submit "Create" -%>
+    <% end %>
+    | <%= link_to 'Back', ingrediences_path -%>
+<% end %>

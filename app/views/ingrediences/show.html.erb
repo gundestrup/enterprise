@@ -1,0 +1,33 @@
+<%= tabnav :kitchen %>
+<p>
+  <b>Title:</b>
+  <%=h @ingredience.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @ingredience.description %>
+</p>
+
+<p>
+  <b>Weight:</b>
+  <%=h @ingredience.weight %>
+</p>
+
+<% if logged_in? %>
+    <%= link_to 'Edit', edit_ingredience_path(@ingredience) %> |
+    <%= link_to 'New', new_ingredience_path %> |
+<% end %>
+<%= link_to 'Back', ingrediences_path %>
+<h3>Recipes</h3>
+<table>
+    <%
+       odd_or_even = 0
+       for meal in @meals
+       odd_or_even = 1 - odd_or_even
+    %>
+            <tr valign="top" class="ListLine<%= odd_or_even %>">
+        <td><%= link_to meal.recipe.title, meal.recipe %></td><td>(<%= link_to meal.recipe.category.name, meal.recipe.category %>)</td>
+            </tr>
+    <% end %>
+</table>

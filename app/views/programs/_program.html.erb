@@ -1,0 +1,38 @@
+<%= error_messages_for :program %>
+
+<% form_for(@program) do |f| %>
+    <table class="Table">
+        <tr>
+            <td>Name</td><td> <%= f.text_field :name %></td>
+        </tr>
+        <tr>
+            <td>Description</td><td><%= f.text_area :description, :cols=> "29" %></td>
+        </tr>
+        <tr>
+            <td>Serial number</td><td><%= f.text_field :serialnumber %></td>
+        </tr>
+        <tr>
+            <td>Version</td><td><%= f.text_field :version %></td>
+        </tr>
+        <tr>
+            <td>Licenses numbers</td><td><%= f.text_field :licenses %></td>
+        </tr>
+        <tr>
+            <td>Linux</td><td><%= f.check_box :linux %></td>
+        </tr>
+        <tr>
+            <td>Mac</td><td><%= f.check_box :mac %></td>
+        </tr>
+        <tr>
+            <td>PC</td><td><%= f.check_box :pc %></td>
+        </tr>
+    </table>
+
+    <% if controller.action_name == "edit" -%>
+        <%= f.submit "Update" -%>
+    <% end %>
+    <% if controller.action_name == "new" -%>
+        <%= f.submit "Create" -%>
+    <% end %>
+    | <%= link_to 'Back', programs_path -%>
+<% end %>

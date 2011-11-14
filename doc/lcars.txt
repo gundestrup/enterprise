@@ -1,0 +1,32 @@
+Background: Black
+
+FF9900
+CC99CC
+9999CC
+CC6666
+FFCC99
+9999FF
+FF9966
+CC6699
+
+Orange color text
+headline is yellow
+link purpel
+
+Recource:
+http://www.lcarscom.net/faq.htm
+http://www.bracercom.com/tutorial/CoherentLCARSInterface/maincontent.html
+
+Layout size:
+Main title aize
+Subheader
+Normal size
+
+Allign elements stricts
+
+Frame:
+Thick to Thin
+Thin to Thick
+
+http://www.okudagrams.com/
+http://www.lcars.org.uk/

@@ -1,0 +1,75 @@
+Action:
+  name: Action
+  music: false
+  film: true
+
+Sciense Fiction:
+  name: Sciense Fiction
+  music: false
+  film: true
+
+Thriller:
+  name: Thriller
+  music: false
+  film: true
+
+War:
+  name: War
+  music: false
+  film: true
+
+Western:
+  name: Western
+  music: false
+  film: true
+
+Comedy:
+  name: Comedy
+  music: false
+  film: true
+
+Cartoons:
+  name: Cartoons
+  music: false
+  film: true
+
+#Music
+Danish:
+  name: Danish
+  music: true
+  film: false
+
+Country:
+  name: Country
+  music: true
+  film: false
+
+Blues:
+  name: Blues
+  music: true
+  film: false
+
+Rock:
+  name: Rock
+  music: true
+  film: false
+
+Hip Hop:
+  name: Hip Hop
+  music: true
+  film: false
+
+Classic:
+  name: Classic
+  music: true
+  film: false
+
+Opera:
+  name: Opera
+  music: true
+  film: false
+
+Soundtrack:
+  name: Soundtrack
+  music: true
+  film: false

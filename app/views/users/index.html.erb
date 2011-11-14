@@ -1,0 +1,12 @@
+<%= link_to 'Locations', locations_path %>| <%= link_to 'new', new_user_path %>
+ <h2>All Users</h2>
+
+ <table class="Table">
+   <tr>
+     <th>Username</th>
+     <th>Email</th>
+     <th>Enabled?</th>
+     <th>Roles</th>
+   </tr>
+    <%= render :partial => 'user', :collection => @users %>
+ </table>

@@ -1,0 +1,29 @@
+<%= error_messages_for :list %>
+
+<td>Purchase</td><% if controller.action_name == 'new' %>
+                    <%= @purchase.name %>
+                <% end %>
+                <% if controller.action_name == 'edit' %>
+                    <%= @list.purchase.name %>
+                <% end %>
+<% form_for(@list) do |f| %>
+    <table class="Table">
+        <tr>
+            <th>Quantity</th><th>Unit</th><th>Ingredience</th>
+        </tr>
+        <tr>
+            <td><%= f.text_field :quantity, :size => 3 %></td>
+            <td><%= collection_select("list", "unit_id" , @units, "id", "name") %></td>
+            <td><%= collection_select("list", "ingredience_id" , @ingrediences, "id", "title") %></td>
+
+        </tr>      
+    </table>
+
+    <% if controller.action_name == "edit" -%>
+        <%= f.submit "Update" -%>
+    <% end %>
+    <% if controller.action_name == "new" -%>
+        <%= f.submit "Create" -%>
+    <% end %>
+    | <%= link_to 'Back', lists_path -%>
+<% end %>

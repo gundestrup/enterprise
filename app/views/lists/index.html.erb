@@ -1,0 +1,35 @@
+<%= tabnav :kitchen %>
+<h1>Listing Lists</h1>
+<% form_tag locations_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+    <% if logged_in? %>| <%= link_to 'New', new_list_path %><% end %>
+  </p>
+<% end %>
+<% if @list.empty? %>
+    Sorry no lists found
+<% end %>
+
+<table class="Table">
+
+  <tr valign="top">
+    <th>Name</th>
+
+  </tr>
+        <%
+            odd_or_even = 0
+            for list in @lists
+            odd_or_even = 1 - odd_or_even
+        %>
+          <tr valign="top" class="ListLine<%= odd_or_even %>">
+            <td><%= link_to list.name, list %></td>
+
+              <% if logged_in? %>
+                <td><%= link_to 'Edit', edit_lsit_path(list) %></td>
+                <td><%= link_to 'Destroy', list, :confirm => 'Are you sure?', :method => :delete %></td>
+              <% end %>
+      </tr>
+    <% end %>
+</table>
+<%= will_paginate @lists %>

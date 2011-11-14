@@ -1,0 +1,38 @@
+<%= form_tag({:action => "search"}, { :onSubmit => "Element.show('spinner');" }) %>
+<table class="Table">
+<tr>
+<td><label for="searchtext"><font size="1"><b>Live TR Search:</b></font></label></td>
+<td><%= text_field_tag :searchtext %></td>
+<td><img alt="spinner" id="spinner" src="http://dev.backcountrymaps.com/images/spinner.gif" style="display:none;" /></td>
+</tr>
+</table>
+<%= form_tag%>
+
+<%= observe_field(:searchtext,
+                 :with => "searching",
+                 :frequency => 0.5,
+                 :update => :search_hits,
+                 :loading => "Element.show('spinner')",
+                 :complete => "Element.hide('spinner')",
+                 :url => { :action => :live_search })
+                  %>
+
+<div id="search_hits"></div>
+
+<h1>Search Categories</h1>
+
+<% form_tag :methode => 'get' do %>
+    <p>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Search", :name => nil %>
+    </p>
+
+<% end %>
+         <%= will_paginate @categories %>
+<% for category in @categories %>
+    <table class="Table">
+        <tr>
+            <td><%= link_to category.name, :action => 'show' %></td>
+        </tr>
+    </table>
+<% end %>

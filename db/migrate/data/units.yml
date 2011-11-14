@@ -1,0 +1,219 @@
+kg:
+    name: kg.
+    description: kilo, svarende til 1000g
+    glasses: false
+    drinks: true
+    foods: true
+
+g:
+    name: g.
+    description: gram, svarende til 1/1000kg
+    glasses: false
+    drinks: true
+    foods: true
+dl:
+    name: dl.
+    description: deciliter, svare til 1/10 L
+    glasses: false
+    drinks: true
+    foods: true
+
+l:
+    name: l.
+    description: liter, svare til 1000 mL
+    glasses: false
+    drinks: true
+    foods: true
+
+spsk:
+    name: spsk.
+    description: spiseske, 15ml
+    glasses: false
+    drinks: true
+    foods: true
+
+tsk:
+    name: tsk.
+    description: teske, 5ml
+    glasses: false
+    drinks: true
+    foods: true
+
+kaffeske:
+    name: Kaffeske
+    description: sv.t. 3ml
+    glasses: false
+    drinks: true
+    foods: true
+
+suppetallerken:
+    name: Suppetallerken
+    description: svt. 250ml
+    glasses: true
+    drinks: false
+    foods: false
+
+rødhvid:
+    name: Hvid-/rødvinsglas
+    description: svt. 250ml
+    glasses: true
+    drinks: true
+    foods: false
+
+stortdrikkeglas:
+    name: Stort drikkeglas
+    description: svt. 250ml
+    glasses: true
+    drinks: true
+    foods: false
+
+mellemdrikkeglas:
+    name: Mellem drikkeglas
+    description: svt. 200ml
+    glasses: true
+    drinks: true
+    foods: false
+
+lilledrikkeglas:
+    name: Lille drikkeglas
+    description: svt. 150ml
+    glasses: true
+    drinks: true
+    foods: false
+
+oelglas:
+    name: Ølglas
+    description: svt. 330ml
+    glasses: true
+    drinks: true
+    foods: false
+
+hedvinsglas:
+    name: Hedvinsglas
+    description: svt. 60ml
+    glasses: true
+    drinks: true
+    foods: false
+
+snapseglas:
+    name: Snapseglas
+    description: svt. 20-> 30ml, dvs til ca 1 genstand.
+    glasses: true
+    drinks: true
+    foods: false
+
+kaffekop:
+    name: Kaffekop
+    description: svt. 150ml
+    glasses: true
+    drinks: true
+    foods: false
+
+tekop:
+    name: Tekop
+    description: svt. 200ml
+    glasses: true
+    drinks: false
+    foods: false
+
+krus :
+    name: Krus
+    description: svt. 250ml
+    glasses: true
+    drinks: false
+    foods: false
+
+fl:
+    name: fl.
+    description: flaske
+    glasses: true
+    drinks: true
+    foods: true
+
+knsp:
+    name: knsp.
+    description: "knivspids, svt. 1/4 ml"
+    glasses: false
+    drinks: false
+    foods: true
+
+pund:
+    name: pund
+    description: 500g
+    glasses: false
+    drinks: false
+    foods: true
+
+pk:
+    name: pakke
+    glasses: false
+    drinks: false
+    foods: true
+    
+lod :
+    name: lod
+    description: sv. til 15g
+    glasses: false
+    drinks: false
+    foods: true
+
+kvint:
+    name: kvint
+    description: sv. til 5g
+    glasses: false
+    drinks: false
+    foods: true
+
+pot:
+    name: pot
+    description: sv. til 0,9661L
+    glasses: false
+    drinks: false
+    foods: true
+
+pælg:
+    name: pælg
+    description: "sv. til 1/4 del pot (0,9661L)"
+    glasses: false
+    drinks: false
+    foods: true
+1:
+    id: 1
+    name: "N/A"
+    glasses: false
+    drinks: false
+    foods: true
+
+stk:
+    name: stk.
+    description: stykker
+    glasses: false
+    drinks: true
+    foods: true
+
+pose:
+    name: ps.
+    description: pose
+    glasses: false
+    drinks: true
+    foods: true
+
+bundt:
+    name: bdt.
+    description: bundt
+    glasses: false
+    drinks: true
+    foods: true
+
+cl:
+    name: cl.
+    description: "cl. svare til 1/100 del liter"
+    glasses: false
+    drinks: true
+    foods: true
+
+stænk:
+    name: stænk
+    glasses: false
+    drinks: true
+    foods: true

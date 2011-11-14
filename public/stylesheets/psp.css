@@ -1,0 +1,33 @@
+/*
+480 x 272
+*/
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 2px;
+  padding-bottom: 6px;
+  margin-bottom: 5px;
+  background-color: #f0f0f0;
+}
+
+ #page {
+        background-color: #dddddd;
+        width: 475px;
+        margin: 0;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+ #content {
+        float: left;
+        background-color: white;
+        border: 1px solid #aaa;
+        border-top: none;
+        padding: 2px;
+        width: 452px;
+      }
+
+.Table {
+    width: 452px;
+}

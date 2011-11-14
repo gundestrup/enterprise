@@ -1,0 +1,13 @@
+xml.instruct! :xml, :version=>"1.0"
+xml.encoding! :utf, :version=>"8"
+xml.instruct! :rss, :version=>"2.0"
+xml.channel{
+    for movie in @movies
+        xml.movie do
+            xml.id(movie.id)
+            xml.title(movie.title)
+            xml.year(movie.year)
+            xml.rating(movie.rating)
+        end
+    end
+}

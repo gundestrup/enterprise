@@ -1,0 +1,35 @@
+<%= tabnav :kitchen %>
+<h1>Listing Purchases</h1>
+<% form_tag purchases_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+    <% if logged_in? %>| <%= link_to 'New', new_purchase_path %><% end %>
+  </p>
+<% end %>
+<% if @purchases.empty? %>
+    Sorry no purchases found
+<% end %>
+
+<table class="Table">
+
+  <tr valign="top">
+    <th>Name</th>
+
+  </tr>
+        <%
+            odd_or_even = 0
+            for purchase in @purchases
+            odd_or_even = 1 - odd_or_even
+        %>
+          <tr valign="top" class="ListLine<%= odd_or_even %>">
+            <td><%= link_to purchase.name, purchase %></td>
+
+              <% if logged_in? %>
+                <td><%= link_to 'Edit', edit_purchase_path(purchase) %></td>
+                <td><%= link_to 'Destroy', purchase, :confirm => 'Are you sure?', :method => :delete %></td>
+              <% end %>
+      </tr>
+    <% end %>
+</table>
+<%= will_paginate @purchases %>

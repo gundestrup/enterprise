@@ -1,0 +1,41 @@
+<%= tabnav :media %>
+<% if logged_in? %>
+    <%= link_to 'Edit', edit_movie_path(@movie) %> |
+    <%= link_to 'New', new_movie_path %> |
+<% end %>
+<%= link_to 'Back', movies_path %>
+<table class="Table">
+    <tr>
+        <td>Title</td><td><%=h @movie.title %></td>
+    </tr>
+    <tr>
+        <td>Actor</td><td><%=h  @movie.actor %></td>
+    </tr>
+    <tr>
+        <td>Link</td><td>http://<%= @movie.link %></td>
+    </tr>
+    <tr>
+        <td>Category</td><td><%= link_to @movie.category.name, @movie.category %></td>
+    </tr>
+    <tr>
+        <td>Location</td><td><%= link_to @movie.location.name, @movie.location %></td>
+    </tr>
+    <tr>
+        <td>Year</td><td><%=h @movie.year %></td>
+    </tr>
+    <tr>
+        <td>Plot</td><td><%=h @movie.plot %></td>
+    </tr>
+    <tr>
+        <td>Rating</td><td><%=h @movie.rating %></td>
+    </tr>
+    <tr>
+        <td>Own</td><td><% if @movie.own %>Yes <% else %>No<% end %></td>
+    </tr>
+    <tr>
+        <td>Rented</td><td><% if @movie.rented %>Yes <% else %>No<% end %></td>
+    </tr>
+    <tr>
+        <td>User</td><td><%= @movie.user.name %></td>
+    </tr>
+</table>

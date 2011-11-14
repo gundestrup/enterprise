@@ -1,0 +1,19 @@
+<%= tabnav :kitchen %>
+<p>
+  <b>Name:</b>
+  <%=h @meal.recipe.title %>
+</p>
+<table>
+
+    <tr>
+
+    </tr>
+    
+</table>
+<% if logged_in? %>
+    <%= link_to 'Edit', edit_meal_path(@meal) %> |
+    <%= link_to 'New', new_meal_path %> |
+<% end %>
+<%= link_to 'Back', meals_path %>
+
+<br/>

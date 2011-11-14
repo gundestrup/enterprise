@@ -1,0 +1,106 @@
+Resources:
+http://www.rubyrailways.com/great-ruby-on-rails-rest-resources/
+
+Search across multiable models
+http://gweezlebur.com/2007/7/31/restful-search-across-multiple-models
+http://ifup.org/2005/04/02/ajax-and-ruby-on-rails-until-5am/
+http://snippets.dzone.com/posts/show/1691
+
+Getting external IMDB resouirces
+http://www.quarkruby.com/tutorials
+http://blog.labnotes.org/2006/07/11/scraping-with-style-scrapi-toolkit-for-ruby/
+http://www.quarkruby.com/2008/1/30/scrapi-enhancements
+
+http://wiki.rubyonrails.org/rails/pages/Beginner+Howto+on+has_many+:through
+
+Authentication:
+http://www.railsforum.com/viewtopic.php?id=14216
+
+SCREENCAST
+http://podcast.sdruby.com/podcasts/009_rest.m4v
+http://podcast.sdruby.com/podcasts/010_rest_2.m4v
+
+REST 407-421
+Routing 392-403
+(Objekt orienteret)
+
+/controller/action/create
+/controller/action/show/1
+/controller/action/update/1
+/controller/action/delete/1
+
+POST -> Create
+GET -> Read
+Put -> Update
+Delete -> Destroy
+
+POST /controller/ (create)
+GET /controller/1 (read)
+PUT /controller/1 (update)
+DELETE /controller/1 (delete)
+
+map.recources :citizen
+giver:
+	citizen_url /citizens/:id
+	citizens_url /citizens
+	new_citizen_url /citizens/new
+	edit_citizen_url /citizens/:id;edit
+
+Namedroutes for free
+
+OLD:
+link_to :controller => 'assertions',
+				:action => 'destroy', :post => :true
+
+NEW:
+link_to assertions_url(@assersion),
+				:methode => :delete
+				
+Mulighed for nestes resources, if related
+fx: /posts/1/comments
+(blog) med post/1 (comment controller)
+
+map.resources :posts do |post|
+		post.resources :comments
+		end
+<%= link_to comment_url(@post, @comment) %>
+
+Accept-Header
+respond_to do |t|
+		t.html
+		t.rb {send data ...}
+	end
+	
+Custus mime type?
+Mime::Type.register("text/x-ruby", :rb)
+
+-> Webservices for free
+
+Form, new:
+<% form_for	:assertion,
+			:html => {:methode => :post}
+			:url => accertion_path(@assertion) do |f| %>
+			
+Form, update
+<% form_for	:assertion,
+			:html => {:methode => :put}
+			:url => accertion_path(@assertion) do |f| %>			
+
+Inplace Editor
+http://blog.codahale.com/2006/01/14/a-rails-howto-simplify-in-place-editing-with-scriptaculous/
+
+XML
+http://wiki.rubyonrails.org/rails/pages/HowtoGenerateXml
+
+Show/Hide acriptbuluos
+<div id="ingredience" style="display:none; width:200px; height:80px;  border:1px solid #333;">
+        <a href="#" onclick="$('ingredience').hide(); return false;">Hide</a><br/>
+        <% for ingredience in @ingrediences %>
+            <tr>
+                <td><%= check_box_tag "recipe[ingredience_ids][]", ingredience.id %></td>
+                <td><%= ingredience.title %></td>
+            </tr>
+        <% end %>
+    </div>
+
+  <a href="#" onclick="$('ingredience').appear(); return false;"><% 'Search' %></a>

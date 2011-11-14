@@ -1,0 +1,56 @@
+<%= tabnav :kitchen %>
+<% if logged_in? %>
+    <%= link_to 'Edit', edit_purchase_path(@purchase) %> |
+    <%= link_to 'New', new_purchase_path %> |
+    <% end %>
+<%= link_to 'Back', purchases_path %>
+<p>
+  <b>Name:</b>
+  <%=h @purchase.name %>
+</p>
+<table id="my list">
+    <% for list in @lists %>
+          <tr>
+              <td><%= list.quantity %></td>
+              <td>
+                  <%= list.unit.name %>
+              </td>
+              <td>
+                  <% tooltip do %>
+                            <b><%= list.unit.name %></b><br/>
+                            <%= list.unit.description %><br/>
+                        <% end %>
+              </td>
+              <td><%= list.ingredience.title %></td>
+              <% if logged_in? %>
+                  <td><%= link_to 'Edit', edit_list_path(list) %></td>
+                  <td><%= link_to 'Destroy', list, :confirm => 'Are you sure?', :method => :delete %></td>
+              <% end %>
+          </tr>
+        <% end %>
+</table>
+<% if logged_in? %>
+    <%= show_box_for @purchase, :link_name=> "Add ingredience" %>
+                    <% detail_box_for @purchase do %>
+                    <%= hide_box_for @purchase, :link_name=> "done" %>
+<% form_remote_tag(:url => {:controller => 'lists', :action => 'create'},                  
+                  :update => 'my list', :position => 'bottom',
+                  :html => {:id => 'list_form'}
+                  ) do  %>
+<table>
+    <tr>
+        <th>quantity</th><th>unit</th><th>ingredience</th>
+    </tr>
+    <tr>
+            <td><%= text_field :list, :quantity, :maxlength => 3 %></td>
+            <td><%= collection_select("list", "unit_id" , @units, "id", "name") %></td>
+            <td><%= collection_select("list", "ingredience_id" , @ingrediences, "id", "title") %></td>
+        <td><%= text_field :list, :purchase_id, :value => @purchase.id, :maxlength => 4 %></td>        
+        </tr>
+</table>
+<%= submit_tag 'Add' %>
+    <% end %>
+<% end %>
+<br/>
+
+<% end %>

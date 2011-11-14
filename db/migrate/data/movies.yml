@@ -1,0 +1,95 @@
+Shrek:
+    title: Shrek
+    year: 2001
+    rating: 9
+    user_id: 1
+    category: Cartoons 
+    own: true
+
+Shrek 2:
+    title: Shrek 2
+    year: 2004
+    rating: 9
+    user_id: 1
+    category: Cartoons
+    own: true
+
+Star Wars I:
+    title: Star Wars I
+    year:
+    rating: 9
+    user_id: 1
+    category: Sciense Fiction
+    own: true
+
+Star Wars II:
+    title: Star Wars II
+    year:
+    rating: 9
+    user_id: 1
+    category: Sciense Fiction
+    own: true
+
+Star Wars III:
+    title: Star Wars III
+    year:
+    rating: 9
+    user_id: 1
+    category: Sciense Fiction
+    own: true
+
+Star Wars IV:
+    title: Star Wars IV
+    year:
+    rating: 9
+    user_id: 1
+    category: Sciense Fiction
+    own: true
+
+Star Wars V:
+    title: Star Wars V
+    year:
+    rating: 9
+    user_id: 1
+    category: Sciense Fiction
+    own: true
+
+Star Wars VI:
+    title: Star Wars VI
+    year:
+    rating: 9
+    user_id: 1
+    category: Sciense Fiction
+    own: true
+
+Blade Runner:
+    title: Blade Runner - collecters Edition Blue Ray
+    year:
+    rating: 9
+    user_id: 1
+    category: Sciense Fiction
+    own: true
+
+Back To The Future I:
+    title: Back To The Future I
+    year:
+    rating: 9
+    user_id: 1
+    category: Sciense Fiction
+    own: true
+
+Back To The Future II:
+    title: Back To The Future II
+    year:
+    rating: 9
+    user_id: 1
+    category: Sciense Fiction
+    own: true
+
+Back To The Future III:
+    title: Back To The Future III
+    year:
+    rating: 9
+    user_id: 1
+    category: Sciense Fiction
+    own: true

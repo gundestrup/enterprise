@@ -1,0 +1,41 @@
+<h1><%= @category.name %></h1>
+<% if logged_in? %>
+    <%= link_to 'Edit', edit_category_path(@category) %> |
+    <%= link_to 'New', new_category_path %> |
+<% end %>
+<%= link_to 'Back', categories_path %>
+<% if !@recipes.empty? %>
+    <h3>Recipes (<%= Recipe.catcount(@category.id) %>)</h3>
+<table class="Table">
+    <tr>
+        <th>Title</th>
+    </tr>
+  <%
+    odd_or_even = 0
+        for recipe in @recipes
+    odd_or_even = 1 - odd_or_even
+  %>
+    <tr class="ListLine<%= odd_or_even %>" >
+        <td><%= link_to recipe.title, recipe %></td>
+    </tr>
+        <% end %>
+</table>
+<% end %>
+
+<% if !@movies.empty? %>
+    <h3>Movies (<%= Movie.catcount(@category.id) %>)</h3>
+<table class="Table" >
+    <tr class="ListLine<%= odd_or_even %>" >
+        <th>Title</th>
+    </tr>
+  <%
+     odd_or_even = 0
+        for movie in @movies
+     odd_or_even = 1 - odd_or_even
+    %>
+    <tr class="ListLine<%= odd_or_even %>" >
+        <td><%= link_to movie.title, movie %></td>
+    </tr>
+        <% end %>
+</table>
+<% end %>

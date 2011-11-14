@@ -1,0 +1,57 @@
+<%= tabnav :kitchen %>
+<h1>Listing recipes</h1>
+<% form_tag recipes_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>        
+  </p>
+<% end %>
+<% if @recipes.empty? %>
+    Sorry no recipes found
+<% end %>
+<table class="Table">
+
+  <tr valign="top">
+    <th>Title</th>
+    
+    <th>Category</th>
+      <% if logged_in? %>
+        <th colspan="3">Actions</th>
+      <% end %>
+  </tr>
+        <%
+            odd_or_even = 0
+            for recipe in @recipes
+            odd_or_even = 1 - odd_or_even
+        %>
+          <tr valign="top" class="ListLine<%= odd_or_even %>">
+            <td>
+                <%= link_to recipe.title, recipe %> (<%= Meal.count(:all, :conditions => ['recipe_id = ?', recipe.id]) %>)
+                <%= show_box_for recipe, :link_name=> 'ingrediences' %>
+                    <% detail_box_for recipe do %>
+                        <% for ingredience in recipe.ingrediences %>
+                            <%= link_to ingredience.title, ingredience %>
+                        <% end %>
+                        <br/>
+                        <%= hide_box_for recipe, :link_name=> "close" %>
+                    <% end %>
+            </td>
+
+            <td>
+                <%= link_to recipe.category.name, recipe.category %> (<%= Recipe.count(:all, :conditions => ['category_id = ?', recipe.category_id]) %>)
+
+            </td>
+              
+              <% if logged_in? %>
+                <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
+                <td><%= link_to 'Destroy', recipe, :confirm => 'Are you sure?', :method => :delete %></td>
+              <% end %>
+      </tr>      
+        <tr>
+            <td>
+                <hr class="Ruler" />
+            </td>            
+        </tr>
+    <% end %>
+</table>
+<%= will_paginate @recipes %>

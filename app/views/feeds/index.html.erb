@@ -1,0 +1,26 @@
+<h1>Listing feeds</h1>
+<%= link_to "RSS feed", params.merge(:format => :rss), :class => "feed_link" %> |
+<%= link_to "XML feed", params.merge(:format => :xml), :class => "feed_link" %> |
+<%= link_to "Json feed", params.merge(:format => :json), :class => "feed_link" %> |
+<%= link_to "Atom feed", params.merge(:format => :atom), :class => "feed_link" %>
+<br/>
+<ul id="feeds">
+<% for feed in @feeds %>
+  <% content_tag_for :li, feed do %>
+<span class="handle">[drag]</span>
+    <%= link_to h(feed.name), feed %><br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=h feed.description %>
+	<ul>
+		<li>
+			<%= link_to 'url', feed.link, :target => '_blank' %> |
+			<%= link_to 'Edit', edit_feed_path(feed) %> |
+			<%= link_to 'Destroy', feed, :confirm => 'Are you sure?', :method => :delete %>
+		</li>
+	</ul>
+  <% end %>
+<% end %>
+</ul>
+<%= sortable_element("feeds", :url => sort_feeds_path, :handle => "handle") %>
+<br />
+
+<%= link_to 'New feed', new_feed_path %>

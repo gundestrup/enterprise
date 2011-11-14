@@ -1,0 +1,30 @@
+<%
+   render_tabnav :media,
+                 :generate_css => false do
+
+
+      add_tab do |t|
+          t.named 'Search'
+          t.links_to hash_for_movies_path
+          
+      end
+
+      add_tab do |t|
+          t.named 'New'
+          t.links_to hash_for_new_movie_path
+      end
+
+      add_tab do |t|
+          t.named 'Categories'
+          t.links_to hash_for_categories_path(:type => 'movie')
+          t.highlights_on hash_for_categories_path
+      end
+
+      add_tab do |t|
+          t.named 'Locations'
+          t.links_to hash_for_locations_path          
+      end
+
+     end
+
+%>

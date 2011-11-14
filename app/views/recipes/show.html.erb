@@ -1,0 +1,95 @@
+<%= tabnav :kitchen %>
+<p>
+  <b>Title:</b>
+  <%=h @recipe.title %>
+</p>
+<% if logged_in? %>
+    <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+    <%= link_to 'New', new_recipe_path %> |
+<% end %>
+<%= link_to 'Back', recipes_path %>
+
+<p>
+  <b>Category:</b>
+  <%= link_to @recipe.category.name, @recipe.category %>
+</p>
+
+<b>Ingrediences:</b>
+    <table id="my meal">
+    <%
+       odd_or_even = 0
+       for meal in @meals
+       odd_or_even = 1 - odd_or_even
+    %>
+          <tr valign="top" class="ListLine<%= odd_or_even %>">
+              <td><%= meal.quantity %></td>
+              <td>
+                  <%= meal.unit.name %>
+              </td>
+              <td>
+                  <% tooltip do %>
+                            <b><%= meal.unit.name %></b><br/>
+                            <%= meal.unit.description %><br/>
+                    <% end %>
+              </td>
+              <td>
+                  <%= link_to meal.ingredience.title, meal.ingredience %>
+                  <% tooltip do %>
+                        <b><%= meal.ingredience.title %></b><br/>
+                        <b>Description:</b><br/>
+                        <%= meal.ingredience.description %><br/>
+                        <b>Weight</b><br/>
+                        <%= meal.ingredience.weight %><br/>
+                  <% end %>
+              </td>
+
+              <% if logged_in? %>
+                  <td><%= link_to 'Edit', edit_meal_path(meal) %></td>
+                  <td><%= link_to 'Destroy', meal, :confirm => 'Are you sure?', :method => :delete %></td>
+              <% end %>
+          </tr>
+        <% end %>
+</table>
+<br/>
+<% if logged_in? %>
+    <%= show_box_for @recipe, :link_name => "new ingredience" %>
+                    <% detail_box_for @recipe do %>
+                    <%= hide_box_for @recipe, :link_name => "done" %>
+
+            <% form_remote_tag(:url => {:controller => 'meals', :action => 'create'},
+                              :update => 'my meal', :position => 'bottom',
+                              :html => {:id => 'meal_form'}
+                              ) do  %>
+            <table>
+                <tr>
+                    <th>quantity</th><th>Unit</th><th>ingredience</th>
+                </tr>
+                <tr>
+                        <td><%= text_field :meal, :quantity, :maxlength => 3 %></td>
+                        <td><%= collection_select("meal", "unit_id" , @units, "id", "name") %></td>
+                        <td><%= collection_select("meal", "ingredience_id" , @ingrediences, "id", "title") %></td>
+                    <td><%= text_field :meal, :recipe_id, :value => @recipe.id, :maxlength => 4 %></td>
+                    </tr>
+            </table>
+            <%= submit_tag 'Add' %>
+        <% end %>
+    <% end %>
+<% end %>
+<p>
+	<b>Info: </b><br/>
+	KJ: <%= @recipe.kj %> | FE: <%= @recipe.fe %> | kcal: <%= @recipe.kcal %><br/>
+	Prep time: <%= @recipe.time_prep %><br/>
+	Work Time: <%= @recipe.time_work %><br/>
+	Freezerable?: <%= @recipe.freezeable? %><br/>
+	<br/>
+  <b>Description:</b>
+  <%= @recipe.description %>    
+</p>
+
+    
+
+<% if logged_in? %>
+    <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+    <%= link_to 'New', new_recipe_path %> |
+<% end %>
+<%= link_to 'Back', recipes_path %>

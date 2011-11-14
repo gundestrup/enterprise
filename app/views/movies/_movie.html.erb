@@ -1,0 +1,46 @@
+<%= error_messages_for :movie %>
+
+<% form_for(@movie) do |f| %>
+    <table class="Table">
+        <tr>
+            <td>Title</td><td> <%= f.text_field :title %></td>
+        </tr>
+        <tr>
+            <td>Actor </td><td><%= f.text_field :actor %></td>
+        </tr>
+        <tr>
+            <td>Category</td><td><%= collection_select("movie", "category_id" , @categories, "id", "name") %></td>
+        </tr>
+        <tr>
+            <td>Location</td><td><%= collection_select("movie", "location_id" , @locations, "id", "name") %></td>
+        </tr>
+        <tr>
+            <td>year </td><td><%= f.text_field :year, :size => '4', :maxlength => '4' %></td>
+        </tr>
+        <tr>
+            <td>plot </td><td><%= f.text_area :plot, :rows=> "5", :cols=> "22" %></td>
+        </tr>
+        <tr>
+            <td>Link</td><td>http://<%= f.text_field :link, :size => '6' %></td>
+        </tr>
+        <tr>
+            <td>rating </td><td><%= f.text_field :rating, :size => '2', :maxlength => '1' %></td>
+        </tr>
+        <tr>
+            <td>own </td><td><%= f.check_box :own %></td>
+        </tr>
+        <tr>
+            <td>rented </td><td><%= f.check_box :rented %></td>
+        </tr>
+        <tr>
+            <td>User</td><td><%= @movie.user.name %></td>
+        </tr>
+</table>
+    <% if controller.action_name == "edit" -%>
+        <%= f.submit "Update" -%>
+    <% end %>
+    <% if controller.action_name == "new" -%>
+        <%= f.submit "Create" -%>
+    <% end %>
+    | <%= link_to 'Back', movies_path -%>
+<% end %>

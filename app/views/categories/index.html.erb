@@ -1,0 +1,40 @@
+<% if params[:type] == 'movie' %>
+    <%= tabnav :media %>
+<% end %>
+<% if params[:type] == 'recipe' %>
+    <%= tabnav :kitchen %>
+<% end %>
+
+<h1>Listing Categories</h1>
+<% form_tag categories_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %> 
+    <%= submit_tag "Search", :name => nil %>
+      <select name="type">
+          <option value="all">All</option>
+         <option value="movie">Movies</option>
+         <option value="recipe">Recipes</option>
+        </select>|
+      <%= link_to 'New', new_category_path %>
+  </p>
+<% end %>
+<% if @categories.empty? %>
+    Sorry nothing found
+<% end %>
+<table class="Table">
+    <tr>
+        <th>Name</th><% if params[:type] == "all" %><th>film</th><th>Music</th><th>Food</th><% end %><th colspan="2">Actions</th>
+    </tr>
+        <% for category in @categories %>
+            <tr>
+                <td><%= link_to category.name, category %> (<%= Recipe.catcount(category.id)+Movie.catcount(category.id) %>)</td>
+                <% if params[:type] == "all" %>
+                    <td><% if category.film %>x<% end %></td>
+                    <td><% if category.food %>x<% end %></td>
+                <% end %>
+                <td><%= link_to 'Edit', edit_category_path(category) %></td>
+                <td><%= link_to 'Destroy', category, :confirm => 'Are you sure?', :method => :delete %></td>
+            </tr>
+        <% end %>
+    </table>
+<%= will_paginate @categories, :params => {:type => params[:type], :search => params[:search]}%>

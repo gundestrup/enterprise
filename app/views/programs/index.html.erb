@@ -1,0 +1,45 @@
+<h1>Listing programs</h1>
+<% form_tag programs_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+    <% if logged_in? %>| <%= link_to 'New', new_program_path %> <% end %>
+  </p>
+<% end %>
+<% if @programs.empty? %>
+    Sorry no programs found
+<% end %>
+
+<table class="Table">
+
+  <tr valign="top">
+    <th>Name</th>
+    <th>linux</th>
+    <th>mac</th>
+    <th>pc</th>
+  </tr>
+        <%
+            odd_or_even = 0
+            for program in @programs
+            odd_or_even = 1 - odd_or_even
+        %>
+          <tr valign="top" class="ListLine<%= odd_or_even %>">
+            <td>
+                <%= link_to program.name, program %> ( )</td><td><% if program.linux %>x<% end %></td><td><% if program.mac %>x<% end %>
+          </td>
+          <td>
+                <% if program.pc %>x<% end %>
+          </td>
+        </tr>
+         <tr class="ListLine<%= odd_or_even %>">
+                <td>
+                    <%= link_to 'Edit', edit_program_path(program) %>
+                    <%= link_to 'Destroy', program, :confirm => 'Are you sure?', :method => :delete %>
+                </td>
+        </tr>
+        <tr>
+            <td><hr class="Ruler" /></td>
+        </tr>
+    <% end %>
+</table>
+<%= will_paginate @programs %>

@@ -1,0 +1,36 @@
+<%= error_messages_for :recipe %>
+
+<% form_for(@recipe) do |f| %>
+    <table class="Table">
+        <tr>
+            <td>Title</td>
+			<td> <%= f.text_field :title, :size => "40" %></td>
+        </tr>
+        <tr>
+            <td>Description </td>
+			<td><%= f.text_area :description, :cols=> "29" %></td>
+        </tr>
+        <tr>
+            <td>Category</td>
+			<td><%= collection_select("recipe", "category_id" , @categories, "id", "name") %></td>        
+		</tr>
+		<tr>
+			<td>Info</td>
+			<td>
+				<%= f.text_field :kj, :value => 'kj', :size => "4" %> |
+				<%= f.text_field :fe, :value => 'FE',:size => "4" %> |
+				<%= f.text_field :kcal, :value => 'kcal',:size => "4" %><br/>
+				<%= f.text_field :time_prep, :value => 'prep time',:size => "7" %> |
+				<%= f.text_field :time_work, :value => 'work time', :size => "7" %> |
+				freeze?<%= f.check_box :freezeable, :size => "4" %>
+			</td>
+		</tr>
+    </table>    
+    <% if controller.action_name == "edit" -%>
+        <%= f.submit "Update" -%>
+    <% end %>
+    <% if controller.action_name == "new" -%>
+        <%= f.submit "Create" -%>
+    <% end %>
+    | <%= link_to 'Back', recipes_path -%>
+<% end %>
