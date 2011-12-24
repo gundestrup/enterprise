@@ -5,7 +5,7 @@
 #ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.11' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.14' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -60,7 +60,7 @@ Rails::Initializer.run do |config|
 
   config.gem 'tiny_mce' # removed from vendor/plugin to gem | https://github.com/kete/tiny_mce'
   config.gem "paperclip" # remvoed from vendor/plugin to gem | https://github.com/thoughtbot/paperclip
-  config.gem 'will_paginate', :version => '~> 2.3.11', :source => 'http://gemcutter.org'
+  config.gem 'will_paginate', :version => '~> 2.3.16', :source => 'http://gemcutter.org'
 end
 require 'will_paginate'
 ActionMailer::Base.raise_delivery_errors = true
