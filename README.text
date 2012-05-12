@@ -27,7 +27,10 @@ Install Ruby on Rails, look at 	http://rubyonrails.org/ if in doubt
 		/initializers/
 			mail.example.rb -> mail.rb
 
+	app/models/
+		error_mailer.example.rb -> error_mailer.rb
 
+		user_mailer.example.rb -> user_mailer.rb
 ### Change stuff in the following files
 	/config/
 		database.yml
