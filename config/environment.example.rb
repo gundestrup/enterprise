@@ -58,7 +58,6 @@ Rails::Initializer.run do |config|
   config.active_record.default_timezone = :utc
   config.active_record.observers = :user_observer
 
-  config.gem 'tiny_mce' # removed from vendor/plugin to gem | https://github.com/kete/tiny_mce'
   config.gem "paperclip", :version => "~> 2.4" # remvoed from vendor/plugin to gem | https://github.com/thoughtbot/paperclip
   config.gem 'will_paginate', :version => '~> 2.3.16', :source => 'http://gemcutter.org'
 end
