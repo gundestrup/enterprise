@@ -12,7 +12,6 @@ Enterprise is a homemade intranet
 * Ruby 1.8.7
 
 ### Gems
-* tiny_mce
 * paperclip
 * will_paginate
 

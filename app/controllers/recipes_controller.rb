@@ -2,18 +2,8 @@ class RecipesController < ApplicationController
     before_filter :login_required, :except => [:index, :show, :setlayout, :setcss]
     before_filter :category_missing_food, :only => [:new]
     
-    uses_tiny_mce(:options => {:theme => 'advanced',
-                           :browsers => %w{msie gecko},
-                           :theme_advanced_toolbar_location => "top",
-                           :theme_advanced_toolbar_align => "left",
-                           :theme_advanced_resizing => true,
-                           :theme_advanced_resize_horizontal => false,
-                           :paste_auto_cleanup_on_paste => true,
-                           :theme_advanced_buttons1 => %w{formatselect fontselect fontsizeselect },
-                           :theme_advanced_buttons2 => %w{bold italic underline strikethrough separator justifyleft justifycenter justifyright indent outdent separator},
-                           :theme_advanced_buttons3 => %w{bullist numlist forecolor backcolor separator link unlink image undo redo},
-                           :plugins => %w{contextmenu paste}},
-              :only => [:new, :edit, :show, :index])
+    
+    #WYSIWYG editor [:new, :edit])
 
     # GET /recipes
   # GET /recipes.xml
