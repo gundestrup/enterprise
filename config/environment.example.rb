@@ -37,7 +37,7 @@ Rails::Initializer.run do |config|
   # Make sure the secret is at least 30 characters and all random, 
   # no regular words or you'll be exposed to dictionary attacks.
   config.action_controller.session = {
-    :session_key => '_enterprise_session',
+    :key => '_enterprise_session',
     :secret      => 'Please change me'
   }
 
@@ -58,8 +58,7 @@ Rails::Initializer.run do |config|
   config.active_record.default_timezone = :utc
   config.active_record.observers = :user_observer
 
-  config.gem "paperclip", :version => "~> 2.4" # remvoed from vendor/plugin to gem | https://github.com/thoughtbot/paperclip
-  config.gem 'will_paginate', :version => '~> 2.3.16', :source => 'http://gemcutter.org'
+  config.gem 'will_paginate', :version => '~> 2.3.16'
 end
 require 'will_paginate'
 ActionMailer::Base.raise_delivery_errors = true

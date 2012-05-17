@@ -36,7 +36,7 @@ Install Ruby on Rails, look at 	http://rubyonrails.org/ if in doubt
 
 		enviroment.rb
 			config.action_controller.session = {
-	   		:session_key => '_enterprise_session',
+	   		:key => '_enterprise_session',
 			:secret      => 'Please change me'
 	  		}
 	/db/migrate/data/
