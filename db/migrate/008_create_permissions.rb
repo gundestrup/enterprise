@@ -12,8 +12,9 @@
      user.login = "admin"
      user.name = "change me"
      user.email = "change@me.now"
-     user.password = "change me"
-     user.password_confirmation = "change me"
+     #Set initial admin password via the ADMIN_PASSWORD environment variable.
+     user.password = ENV['ADMIN_PASSWORD']
+     user.password_confirmation = ENV['ADMIN_PASSWORD']
      user.save(false)
      user.send(:activate!)
      role = Role.find_by_rolename('administrator')

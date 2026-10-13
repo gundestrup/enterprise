@@ -11,7 +11,7 @@
 
 <p>
   <b>Category:</b>
-  <%= link_to @recipe.category.name, @recipe.category %>
+  <%= link_to h(@recipe.category.name), @recipe.category %>
 </p>
 
 <b>Ingrediences:</b>
@@ -22,24 +22,24 @@
        odd_or_even = 1 - odd_or_even
     %>
           <tr valign="top" class="ListLine<%= odd_or_even %>">
-              <td><%= meal.quantity %></td>
+              <td><%=h meal.quantity %></td>
               <td>
-                  <%= meal.unit.name %>
+                  <%=h meal.unit.name %>
               </td>
               <td>
                   <% tooltip do %>
-                            <b><%= meal.unit.name %></b><br/>
-                            <%= meal.unit.description %><br/>
+                            <b><%=h meal.unit.name %></b><br/>
+                            <%=h meal.unit.description %><br/>
                     <% end %>
               </td>
               <td>
-                  <%= link_to meal.ingredience.title, meal.ingredience %>
+                  <%= link_to h(meal.ingredience.title), meal.ingredience %>
                   <% tooltip do %>
-                        <b><%= meal.ingredience.title %></b><br/>
+                        <b><%=h meal.ingredience.title %></b><br/>
                         <b>Description:</b><br/>
-                        <%= meal.ingredience.description %><br/>
+                        <%=h meal.ingredience.description %><br/>
                         <b>Weight</b><br/>
-                        <%= meal.ingredience.weight %><br/>
+                        <%=h meal.ingredience.weight %><br/>
                   <% end %>
               </td>
 
@@ -77,13 +77,13 @@
 <% end %>
 <p>
 	<b>Info: </b><br/>
-	KJ: <%= @recipe.kj %> | FE: <%= @recipe.fe %> | kcal: <%= @recipe.kcal %><br/>
-	Prep time: <%= @recipe.time_prep %><br/>
-	Work Time: <%= @recipe.time_work %><br/>
-	Freezerable?: <%= @recipe.freezeable? %><br/>
+	KJ: <%=h @recipe.kj %> | FE: <%=h @recipe.fe %> | kcal: <%=h @recipe.kcal %><br/>
+	Prep time: <%=h @recipe.time_prep %><br/>
+	Work Time: <%=h @recipe.time_work %><br/>
+	Freezerable?: <%=h @recipe.freezeable? %><br/>
 	<br/>
   <b>Description:</b>
-  <%= @recipe.description %>    
+  <%=h @recipe.description %>    
 </p>
 
     

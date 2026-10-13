@@ -49,7 +49,7 @@ var Prototype = {
     })()
   },
 
-  ScriptFragment: '<script[^>]*>([\\S\\s]*?)<\/script>',
+  ScriptFragment: '<script[^>]*>([\\S\\s]*?)<\/script(\\s[^>]*)?>',
   JSONFilter: /^\/\*-secure-([\s\S]*)\*\/\s*$/,
 
   emptyFunction: function() { },
@@ -572,7 +572,12 @@ Object.extend(String.prototype, (function() {
   }
 
   function stripTags() {
-    return this.replace(/<\w+(\s+("[^"]*"|'[^']*'|[^>])+)?>|<\/\w+>/gi, '');
+    var stripped = String(this), previous;
+    do {
+      previous = stripped;
+      stripped = previous.replace(/<\w+([^>"']|"[^"]*"|'[^']*')*>|<\/\w+\s*>|</gi, '');
+    } while (stripped !== previous);
+    return stripped;
   }
 
   function stripScripts() {
@@ -657,14 +662,17 @@ Object.extend(String.prototype, (function() {
   }
 
   function inspect(useDoubleQuotes) {
-    var escapedString = this.replace(/[\x00-\x1f\\]/g, function(character) {
+    var quote = useDoubleQuotes ? '"' : "'";
+    var escapedString = this.replace(/[\x00-\x1f\\'"]/g, function(character) {
       if (character in String.specialChar) {
         return String.specialChar[character];
       }
+      if (character === '"' || character === "'") {
+        return character === quote ? '\\' + character : character;
+      }
       return '\\u00' + character.charCodeAt().toPaddedString(2, 16);
     });
-    if (useDoubleQuotes) return '"' + escapedString.replace(/"/g, '\\"') + '"';
-    return "'" + escapedString.replace(/'/g, '\\\'') + "'";
+    return quote + escapedString + quote;
   }
 
   function unfilterJSON(filter) {
@@ -689,7 +697,7 @@ Object.extend(String.prototype, (function() {
       });
     }
     try {
-      if (!sanitize || json.isJSON()) return eval('(' + json + ')');
+      if (!sanitize || json.isJSON()) return JSON.parse(json);
     } catch (e) { }
     throw new SyntaxError('Badly formed JSON string: ' + this.inspect());
   }
@@ -3968,7 +3976,7 @@ Prototype.Selector = (function() {
  */
 (function(){
 
-var chunker = /((?:\((?:\([^()]+\)|[^()]+)+\)|\[(?:\[[^[\]]*\]|['"][^'"]*['"]|[^[\]'"]+)+\]|\\.|[^ >+~,(\[\\]+)+|[>+~])(\s*,\s*)?((?:.|\r|\n)*)/g,
+var chunker = /((?:\((?:\([^()]+\)|[^()])+\)|\[(?:\[[^[\]]*\]|['"][^'"]*['"]|[^[\]'"])+\]|\\.|[^ >+~,(\[\\])+|[>+~])(\s*,\s*)?((?:.|\r|\n)*)/g,
 	done = 0,
 	toString = Object.prototype.toString,
 	hasDuplicate = false,
@@ -4234,7 +4242,7 @@ var Expr = Sizzle.selectors = {
 		TAG: /^((?:[\w\u00c0-\uFFFF\*-]|\\.)+)/,
 		CHILD: /:(only|nth|last|first)-child(?:\((even|odd|[\dn+-]*)\))?/,
 		POS: /:(nth|eq|gt|lt|first|last|even|odd)(?:\((\d*)\))?(?=[^-]|$)/,
-		PSEUDO: /:((?:[\w\u00c0-\uFFFF-]|\\.)+)(?:\((['"]*)((?:\([^\)]+\)|[^\2\(\)]*)+)\2\))?/
+		PSEUDO: /:((?:[\w\u00c0-\uFFFF-]|\\.)+)(?:\((['"]*)((?:\([^\)]+\)|[^\2\(\)])+)\2\))?/
 	},
 	leftMatch: {},
 	attrMap: {

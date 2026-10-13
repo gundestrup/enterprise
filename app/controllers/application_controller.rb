@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   #before_filter :not_logged_in_required, :only => :setlayout
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
-  protect_from_forgery #:secret => '0306ffa800ef09de38cbe03a467122d1'
+  protect_from_forgery :with => :exception #:secret => '0306ffa800ef09de38cbe03a467122d1'
 
   
   if  1==2 #@session[:layout] == 'lcars'

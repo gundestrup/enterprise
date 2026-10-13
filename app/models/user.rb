@@ -1,4 +1,5 @@
 require 'digest/sha1'
+require 'digest/sha2'
 class User < ActiveRecord::Base
   # Virtual attribute for the unencrypted password
   attr_accessor :password
@@ -65,7 +66,7 @@ class User < ActiveRecord::Base
 
    # Encrypts some data with the salt.
    def self.encrypt(password, salt)
-     Digest::SHA1.hexdigest("--#{salt}--#{password}--")
+     Digest::SHA256.hexdigest("--#{salt}--#{password}--")
    end
 
    # Encrypts the password with the user salt

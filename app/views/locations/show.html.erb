@@ -17,7 +17,7 @@
     </tr>
     <% for movie in @location.movies %>
         <tr>
-            <td> <%= link_to movie.title, movie %></td><td><%= movie.category.name %></td>
+            <td> <%= link_to h(movie.title), movie %></td><td><%=h movie.category.name %></td>
         </tr>
     <% end %>
 </table>

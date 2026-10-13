@@ -12,13 +12,13 @@
         <td>Actor</td><td><%=h  @movie.actor %></td>
     </tr>
     <tr>
-        <td>Link</td><td>http://<%= @movie.link %></td>
+        <td>Link</td><td>http://<%=h @movie.link %></td>
     </tr>
     <tr>
-        <td>Category</td><td><%= link_to @movie.category.name, @movie.category %></td>
+        <td>Category</td><td><%= link_to h(@movie.category.name), @movie.category %></td>
     </tr>
     <tr>
-        <td>Location</td><td><%= link_to @movie.location.name, @movie.location %></td>
+        <td>Location</td><td><%= link_to h(@movie.location.name), @movie.location %></td>
     </tr>
     <tr>
         <td>Year</td><td><%=h @movie.year %></td>
@@ -36,6 +36,6 @@
         <td>Rented</td><td><% if @movie.rented %>Yes <% else %>No<% end %></td>
     </tr>
     <tr>
-        <td>User</td><td><%= @movie.user.name %></td>
+        <td>User</td><td><%=h @movie.user.name %></td>
     </tr>
 </table>

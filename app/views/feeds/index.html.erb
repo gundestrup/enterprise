@@ -1,8 +1,8 @@
 <h1>Listing feeds</h1>
-<%= link_to "RSS feed", params.merge(:format => :rss), :class => "feed_link" %> |
-<%= link_to "XML feed", params.merge(:format => :xml), :class => "feed_link" %> |
-<%= link_to "Json feed", params.merge(:format => :json), :class => "feed_link" %> |
-<%= link_to "Atom feed", params.merge(:format => :atom), :class => "feed_link" %>
+<%= link_to "RSS feed", { :controller => 'feeds', :action => 'index', :format => :rss }, :class => "feed_link" %> |
+<%= link_to "XML feed", { :controller => 'feeds', :action => 'index', :format => :xml }, :class => "feed_link" %> |
+<%= link_to "Json feed", { :controller => 'feeds', :action => 'index', :format => :json }, :class => "feed_link" %> |
+<%= link_to "Atom feed", { :controller => 'feeds', :action => 'index', :format => :atom }, :class => "feed_link" %>
 <br/>
 <ul id="feeds">
 <% for feed in @feeds %>

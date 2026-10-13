@@ -22,7 +22,7 @@ class TabnavGenerator < Rails::Generator::Base
   protected 
   
   def banner
-    IO.read File.expand_path(File.join(File.dirname(__FILE__), 'USAGE')) 
+    File.read File.expand_path(File.join(File.dirname(__FILE__), 'USAGE')) 
   end
   
 end
