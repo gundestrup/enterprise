@@ -1,0 +1,54 @@
+{
+  "repo_notes": [
+    {
+      "content": "Enterprise is a homemade intranet built on Ruby on Rails 2.3.14 / Ruby 1.8.7 — a classic pre-Bundler Rails app using script/* helpers, config/environment.rb, prototype.js/scriptaculous JavaScript, and .example config files that must be renamed on install (config/database.example.yml, config/environment.example.rb, config/initializers/mail.example.rb, app/models/error_mailer.example.rb, app/models/user_mailer.example.rb). Only the will_paginate gem is listed as a dependency."
+    },
+    {
+      "content": "Functionally it is a family/personal intranet covering several domains: bookmarks shared via RSS/XML feeds, a recipe system (recipes, ingrediences, units, meals), a shopping system (lists, purchases, locations), a media/movie database (movies, programs), plus CMS-like pages and categories. Authentication and role-based authorization come from lib/authenticated_system.rb with User/Role/Permission models."
+    },
+    {
+      "content": "Notable legacy characteristics for documentation: erb/rhtml/rxml views plus RSS and atom builders, multiple device stylesheets (iphone.css, n95.css, psp.css, lcars.css), dispatch.cgi/dispatch.fcgi entrypoints in public/, seeded lookup data under db/migrate/data/, and tests organized as test/unit and test/functional with YAML fixtures. A recent commit modernized password hashing to salted SHA-256 and hardened prototype.js helpers."
+    }
+  ],
+  "pages": [
+    {
+      "title": "Application Overview",
+      "purpose": "What Enterprise is (a Rails 2.3 intranet), the domains it covers, install/setup from .example files, and the legacy Rails 2.x architecture (config/, script/, public/dispatch.*, prototype.js).",
+      "page_notes": [
+        {
+          "content": "Key sources: README.text (install steps and system requirements), Rakefile, config/routes.rb, config/environment.example.rb, app/controllers/application_controller.rb."
+        }
+      ]
+    },
+    {
+      "title": "Authentication and Authorization",
+      "purpose": "Session/login flow (sessions_controller, passwords_controller, accounts_controller), lib/authenticated_system.rb and lib/authenticated_test_helper.rb, and the User/Role/Permission models that gate access.",
+      "parent": "Application Overview"
+    },
+    {
+      "title": "Kitchen Domain",
+      "purpose": "Recipe and meal planning features: recipes, ingrediences (and the ingrediences_recipies join), units, meals, and shopping via lists, purchases, and locations controllers/models/views.",
+      "parent": "Application Overview"
+    },
+    {
+      "title": "Media and Feeds",
+      "purpose": "Media tracking and syndication: movies, programs, and feeds controllers/models with RSS/atom/XML builder views (feeds index.atom.builder, index.rss.builder, movies index.xml.erb).",
+      "parent": "Application Overview"
+    },
+    {
+      "title": "Pages, Categories, and Misc Resources",
+      "purpose": "CMS-style content and remaining resources: pages, categories (with seeded db/migrate/data/categories.yml), locations, lists, and the shared layouts/widgets (lcars theme, tabnav partials).",
+      "parent": "Application Overview"
+    },
+    {
+      "title": "Database and Migrations",
+      "purpose": "The 26 migrations under db/migrate (schema evolution including the music-domain cleanup in 021_cleanup_song_cd_artist), seeded YAML data under db/migrate/data, and config/database.example.yml setup.",
+      "parent": "Application Overview"
+    },
+    {
+      "title": "Testing",
+      "purpose": "test/unit model tests, test/functional controller tests, YAML fixtures under test/fixtures, and lib/authenticated_test_helper.rb for request-level login in tests.",
+      "parent": "Application Overview"
+    }
+  ]
+}
